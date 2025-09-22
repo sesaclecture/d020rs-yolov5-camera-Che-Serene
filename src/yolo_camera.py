@@ -29,11 +29,10 @@ while True:
             x1, y1, x2, y2 = map(int, obj[0:4])
             # TODO: 인식된 정확도(confidence)와 클래스를 label로 구성
             conf = float(obj[4])
-
             # TODO: OpenCV를 이용해서 해당 좌표에 사각형과 text를 출력
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            obj_info = list(map(int, obj))
-            cv2.putText(frame, f"{round(conf*100, 2)}%, {model.names[obj_info[5]]}",
+            obj_info = int(obj[5])
+            cv2.putText(frame, f"{round(conf*100, 2)}%, {model.names[obj_info]}",
                         (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 181, 197), 2)
             # print(f"Object {i}: {model.names[obj_info[5]]}")
     
